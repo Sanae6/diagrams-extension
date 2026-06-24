@@ -236,7 +236,9 @@ class Diagrams {
 		string $ismapUrl = null
 	): string {
 		$imgAttrs = [ 'src' => $imgUrl ];
-		if ( $mapData ) {
+		if ( str_ends_with($imgUrl, ".svg") ) {
+			$out = Html::element( 'object', [ 'data' => $imgUrl ] );
+		} elseif ( $mapData ) {
 			// Image maps in an image map format.
 			$imageMap = new ImageMap( $mapData );
 			if ( $imageMap->hasAreas() ) {
